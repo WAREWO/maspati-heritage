@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Heritage Pass | Kampoeng Lawas Maspati</title>
-<meta name="description" content="Pesan pengalaman Kampung Lawas Maspati: pilih pengalaman, tanggal, reservasi, pembayaran, dan terima e-ticket QR.">
+<meta name="description" content="Pesan tiket masuk dan paket wisata Kampung Lawas Maspati: pilih tiket atau paket, tanggal, reservasi, pembayaran, dan terima e-ticket QR.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +26,8 @@
           <ul class="sub"><li><a href="explore.html#omah-tuo">Omah Tuo</a></li><li><a href="explore.html#ongko-loro">Sekolah Ongko Loro</a></li><li><a href="explore.html#houses">Heritage Houses</a></li><li><a href="explore.html#map">Heritage Map</a></li></ul></li>
         <li class="nav-item"><a class="nav-link" href="experience.html">Cultural Experience</a>
           <ul class="sub"><li><a href="experience.html#walk">Heritage Walk</a></li><li><a href="experience.html#night">Cultural Night</a></li><li><a href="experience.html#games">Traditional Games</a></li><li><a href="experience.html#remo">Tari Remo Class</a></li><li><a href="experience.html#workshops">Local Workshops</a></li></ul></li>
+        <li class="nav-item"><a class="nav-link" href="paket.html">Tiket &amp; Paket</a>
+          <ul class="sub"><li><a href="paket.html#tiket">Tiket Masuk</a></li><li><a href="paket.html#royal">Royal Welcome</a></li><li><a href="paket.html#student">Student Explorer</a></li><li><a href="paket.html#gathering">Cultural Gathering</a></li></ul></li>
         <li class="nav-item"><a class="nav-link" href="pass.html" aria-current="page">Heritage Pass</a>
           <ul class="sub"><li><a href="pass.html#booking">Pilih & Pesan</a></li><li><a href="pass.html#alur">Alur Reservasi</a></li></ul></li>
         <li class="nav-item"><a class="nav-link" href="merchandise.html">Merchandise</a>
@@ -50,7 +52,7 @@
     <div>
       <p class="eyebrow">Heritage pass</p>
       <h1>Satu Pass, Banyak Cerita</h1>
-      <p class="lead">Lima langkah singkat dari memilih pengalaman hingga e-ticket QR di tanganmu.</p>
+      <p class="lead">Lima langkah singkat dari memilih tiket atau paket hingga e-ticket QR di tanganmu.</p>
     </div>
     
   </div>
@@ -59,7 +61,7 @@
 <section class="sec sec--sage pass-sec" id="booking"><div class="wrap">
   <p class="note no-print" style="margin-bottom:22px"><b>Mode demo.</b> Tidak ada uang yang ditarik dan pesanan belum tersimpan di server. Hindari memasukkan data sungguhan.</p>
   <ol class="steps" id="alur" aria-label="Langkah reservasi">
-    <li class="on" aria-current="step"><b>1</b><span>Choose Experience</span></li>
+    <li class="on" aria-current="step"><b>1</b><span>Choose Ticket</span></li>
     <li><b>2</b><span>Choose Date</span></li>
     <li><b>3</b><span>Reservation</span></li>
     <li><b>4</b><span>Payment</span></li>
@@ -68,16 +70,17 @@
   <div class="pass-grid">
     <form id="pass-form" novalidate>
       <div class="pane" data-step="1">
-        <h2>Pilih pengalaman</h2>
-        <p>Pilih satu paket. Harga menyesuaikan jumlah peserta.</p>
-        <div class="field" id="f-pkg" style="margin:0"><div id="pkg-list"></div><span class="err">Pilih salah satu pengalaman dulu.</span></div>
+        <h2>Pilih tiket atau paket</h2>
+        <p>Tiket masuk untuk kunjungan perorangan, paket wisata untuk rombongan. Rincian lengkap ada di halaman <a href="paket.html">Tiket &amp; Paket</a>.</p>
+        <div class="field" id="f-pkg" style="margin:0"><div id="pkg-list"></div><span class="err">Pilih salah satu tiket atau paket dulu.</span></div>
+        <div id="pkg-extra" class="mt" hidden></div>
         <div class="pane-nav"><span></span><button type="button" class="btn btn--dark" data-next>Lanjut</button></div>
       </div>
       <div class="pane" data-step="2" hidden>
         <h2>Pilih tanggal</h2>
         <p>Tentukan hari, jam, dan jumlah peserta.</p>
         <div class="form-2">
-          <div class="field" id="f-date"><label for="tanggal">Tanggal kunjungan</label><input type="date" id="tanggal" name="tanggal"><span class="err"></span></div>
+          <div class="field" id="f-date"><label for="tanggal">Tanggal kunjungan</label><input type="date" id="tanggal" name="tanggal"><span class="err"></span><span class="hint day-note" id="date-note" hidden></span></div>
           <div class="field"><span class="lbl">Jumlah peserta</span><div class="qty"><button type="button" id="qty-minus" aria-label="Kurangi peserta">−</button><output id="qty-out" aria-live="polite">1</output><button type="button" id="qty-plus" aria-label="Tambah peserta">+</button></div><span class="hint" id="qty-hint"></span></div>
         </div>
         <div class="field" id="f-slot"><span class="lbl">Jam mulai</span><div class="slot" id="slots"></div><span class="err">Pilih jam mulai.</span></div>
@@ -116,6 +119,7 @@
             <dl>
               <div><dt>Nama</dt><dd id="t-name"></dd></div>
               <div><dt>Peserta</dt><dd id="t-qty"></dd></div>
+              <div><dt id="t-inc-label">Termasuk</dt><dd id="t-inc"></dd></div>
               <div><dt>Tanggal</dt><dd id="t-date"></dd></div>
               <div><dt>Jam</dt><dd id="t-slot"></dd></div>
               <div><dt>Pembayaran</dt><dd id="t-pay"></dd></div>
@@ -138,9 +142,11 @@
         <div><dt>Tanggal</dt><dd id="s-date">—</dd></div>
         <div><dt>Jam</dt><dd id="s-slot">—</dd></div>
         <div><dt>Peserta</dt><dd id="s-qty">—</dd></div>
+        <div id="s-inc-row" hidden><dt>Termasuk</dt><dd id="s-inc"></dd></div>
+        <div id="s-ws-row" hidden><dt>Workshop</dt><dd id="s-ws"></dd></div>
       </dl>
       <div class="tot"><span>TOTAL</span><span id="s-total">Rp0</span></div>
-      <p id="s-note">Pilih pengalaman untuk melihat total.</p>
+      <p id="s-note">Pilih tiket atau paket untuk melihat total.</p>
     </aside>
   </div>
 </div></section>
@@ -153,7 +159,7 @@
       <em>“Restoring Eco-Environments to Maintain Beautiful Urban Maspati’s Native-culture”</em>
     </div>
     <div><h2>Home</h2><a href="index.html#about">About Maspati</a><a href="index.html#featured">Featured Experience</a><a href="index.html#upcoming">Upcoming Events</a><a href="index.html#book">Book Now</a><h2>Explore Heritage</h2><a href="explore.html#omah-tuo">Omah Tuo</a><a href="explore.html#ongko-loro">Sekolah Ongko Loro</a><a href="explore.html#houses">Heritage Houses</a><a href="explore.html#map">Heritage Map</a></div>
-    <div><h2>Cultural Experience</h2><a href="experience.html#walk">Heritage Walk</a><a href="experience.html#night">Cultural Night</a><a href="experience.html#games">Traditional Games</a><a href="experience.html#remo">Tari Remo Class</a><a href="experience.html#workshops">Local Workshops</a><h2>Heritage Pass</h2><a href="pass.html#booking">Pilih & Pesan</a><a href="pass.html#alur">Alur Reservasi</a></div>
+    <div><h2>Cultural Experience</h2><a href="experience.html#walk">Heritage Walk</a><a href="experience.html#night">Cultural Night</a><a href="experience.html#games">Traditional Games</a><a href="experience.html#remo">Tari Remo Class</a><a href="experience.html#workshops">Local Workshops</a><h2>Tiket &amp; Paket</h2><a href="paket.html#tiket">Tiket Masuk</a><a href="paket.html#royal">Royal Welcome</a><a href="paket.html#student">Student Explorer</a><a href="paket.html#gathering">Cultural Gathering</a><h2>Heritage Pass</h2><a href="pass.html#booking">Pilih & Pesan</a><a href="pass.html#alur">Alur Reservasi</a></div>
     <div><h2>Merchandise</h2><a href="merchandise.html#keychain">Heritage Keychain</a><a href="merchandise.html#collection">Heritage Collection</a><a href="merchandise.html#story">Story Card</a><h2>Community</h2><a href="community.html#guide">Local Guide</a><a href="community.html#artists">Local Artists</a><a href="community.html#umkm">UMKM</a></div>
     <div><h2>Events</h2><a href="events.html#calendar">Cultural Event Calendar</a><h2>Our Impact</h2><a href="impact.html#sdgs">SDGs</a><a href="impact.html#community">Community Impact</a><a href="impact.html#environment">Environmental Impact</a><h2>Contact</h2><a href="contact.html#location">Location</a><a href="contact.html#whatsapp">WhatsApp</a><a href="contact.html#social">Social Media</a></div>
   </div></div>

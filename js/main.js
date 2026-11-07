@@ -187,7 +187,7 @@
   }
   function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
   function cultural(dateStr) {
-    return { d: dateStr, t: "Cultural Night", k: "program", x: "Musik patrol, paduan suara lansia, dan Tari Remo, pukul 19.00 WIB.", pkg: "cultural-night" };
+    return { d: dateStr, t: "Cultural Night", k: "program", x: "Musik patrol, paduan suara lansia, dan Tari Remo, pukul 19.00 WIB.", pkg: "saturday-night" };
   }
   function eventsOn(dateStr) {
     var out = EVENTS.filter(function (e) { return e.d === dateStr; });
